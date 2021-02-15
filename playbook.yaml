@@ -1,6 +1,12 @@
 ---
-- name: "Install Docker"
+- name: "Execute docker INSTALLATION"
   hosts: all
   become: yes
   roles:
-    - geerlingguy.docker
+    - docker-installation
+
+- name: "Execute docker SECURITIZATION"
+  hosts: all
+  become: yes
+  roles:
+    - docker-securitization
