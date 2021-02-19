@@ -3,6 +3,8 @@
 - name: "Generate CA, Server and Client Certificate"
   include_role:
     name: alexinthesky.secure-docker-daemon
+  vars:
+    dds_host: "{{ inventory_hostname }}"
 
 - name: "Create docker.service.d directory"
   file:
@@ -22,3 +24,16 @@
     daemon_reload: yes
     name: docker
     state: restarted
+
+- name: "Search client key, certificate and ca certificate"
+  find:
+    paths: "{{ dds_client_cert_path }}"
+    recurse: no
+    pattern: "*.pem"
+  register: files_to_copy
+
+- name: "Fecth files to local hosts"
+  fetch: 
+    src: "{{ item.path }}"
+    dest: ../client/
+  with_items: "{{ files_to_copy.files }}"

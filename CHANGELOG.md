@@ -2,6 +2,8 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 0.3.1
+- Fix docker certificate
 ## 0.3.0
 - Add "vm-configure" role to configure VM with software and storage prerequisites
 - Add "docker-swarm" role to configure docker swarm cluster
