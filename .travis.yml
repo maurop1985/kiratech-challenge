@@ -1,6 +1,5 @@
 language: python
 install:
   - pip install ansible-lint
-  - ansible-lint --version
 script:
-  - ansible-lint provisioning/.
+  - ansible-lint provisioning/playbook.yaml

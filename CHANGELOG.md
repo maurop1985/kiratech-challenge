@@ -2,6 +2,8 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 0.4.2
+- Add ansible-lint check to .travis.yml
 ## 0.4.1
 - Fix travis filename
 ## 0.4.0
