@@ -2,6 +2,8 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 0.4.4
+- Edit .travis.yml
 ## 0.4.3
 - Edit .travis.yml
 ## 0.4.2
