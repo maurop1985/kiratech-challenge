@@ -1,0 +1,5 @@
+---
+# vars file for requirements
+#docker_partition_min_size_gb: 40
+#docker_data_disk: /dev/sdb
+#docker_data_path: /var/lib/docker

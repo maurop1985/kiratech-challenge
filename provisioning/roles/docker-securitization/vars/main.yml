@@ -1,0 +1,6 @@
+---
+# vars file for docker-securitization
+#dds_install_shell: false
+#dds_restart_docker: false
+#dds_host: lab1
+#docker_cert_basepath: /etc/docker

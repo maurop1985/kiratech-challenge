@@ -1,0 +1,43 @@
+---
+# tasks file for requirements
+
+- set_fact:
+    mount: "{{ ansible_mounts | first }}"
+    need_extends: False
+- set_fact: disk_av_gb="{{ (mount.size_available|float / 1000000000) | round(1, 'common') }}"
+- set_fact: need_extends="{{ disk_av_gb|float < docker_partition_min_size_gb |float }}"
+
+- name: "Extend docker data partition"
+  block: 
+    - name: Install LVM
+      yum: 
+        name: lvm2
+        state: present
+        update_cache: yes
+
+    - name: Partition, Manage LVM, Format and Mount Disks on Linux
+      vars:
+        parted:
+          - device: "{{ docker_data_disk }}"
+            number: 1
+            label: gpt
+            state: present
+        lvg:
+          - vg: "{{ volume_group_name }}"
+            pvs: "{{ docker_data_disk }}1"
+        lvol:
+          - vg: "{{ volume_group_name }}"
+            lv: "{{ logical_volume_name }}"
+            shrink: no
+            size: 100%FREE
+        filesystem:
+          - fstype: ext4
+            dev: "/dev/{{ volume_group_name }}/{{ logical_volume_name }}"
+        mount:
+          - path: "{{ docker_data_path }}"
+            src: "/dev/{{ volume_group_name }}/{{ logical_volume_name }}"
+            fstype: ext4
+            opts: defaults
+      include_role:
+        name: kevincoakley.disk
+  when: need_extends

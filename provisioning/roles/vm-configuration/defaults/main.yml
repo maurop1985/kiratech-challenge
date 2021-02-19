@@ -1,0 +1,5 @@
+---
+# defaults file for requirements
+volume_group_name: docker_vg
+logical_volume_name: docker_lv
+

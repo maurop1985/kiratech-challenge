@@ -1,0 +1,2 @@
+geerlingguy.docker
+alexinthesky.secure-docker-daemon

@@ -1,5 +1,0 @@
----
-# tasks file for docker-installation
-- name: "Execute docker installation with geerlingguy.docker role"
-  include_role:
-    name: geerlingguy.docker

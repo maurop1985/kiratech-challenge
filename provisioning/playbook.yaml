@@ -1,0 +1,13 @@
+---
+
+- name: Main Playbook
+  hosts: all
+  become: yes
+  vars_files: 
+    - "./variables.yaml"
+  roles:
+    - vm-configuration
+    - geerlingguy.docker  ## Docker Installation
+    - docker-securitization
+    - docker-swarm
+    

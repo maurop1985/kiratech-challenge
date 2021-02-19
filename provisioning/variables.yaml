@@ -1,0 +1,14 @@
+# VM-CONFIGURAION VARIABLES
+docker_partition_min_size_gb: 40
+docker_data_disk: /dev/sdb
+docker_data_path: /var/lib/docker
+# volume_group_name:                    default=docker_vg
+# logical_volume_name:                  default=docker_lv 
+
+
+# DOCKER SECURITIZATION
+dds_country: IT
+dds_state: Rome
+dds_locality: Rome
+dds_server_cert_path: /etc/docker         # Path where server certificates will be created
+dds_client_cert_path: /etc/docker/client  # Path where client certificates will be created
