@@ -1,0 +1,3 @@
+exclude_paths:
+  - ../../.ansible/roles/geerlingguy.docker
+  - ../../.ansible/roles/alexinthesky.secure-docker-daemon

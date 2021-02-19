@@ -4,4 +4,4 @@ install:
   - pip install ansible-lint
   - ansible-galaxy install -r requirements.yaml
 script:
-  - ansible-lint provisioning/playbook.yaml
+  - ansible-lint  provisioning/playbook.yaml

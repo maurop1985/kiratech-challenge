@@ -1,13 +1,18 @@
 ---
 # tasks file for requirements
 
-- set_fact:
+- name: Retrieve root mount information
+  set_fact:
     mount: "{{ ansible_mounts | first }}"
     need_extends: False
-- set_fact: disk_av_gb="{{ (mount.size_available|float / 1000000000) | round(1, 'common') }}"
-- set_fact: need_extends="{{ disk_av_gb|float < docker_partition_min_size_gb |float }}"
 
-- name: "Extend docker data partition"
+- name: Calculate disk availability size in GB
+  set_fact: disk_av_gb="{{ (mount.size_available|float / 1000000000) | round(1, 'common') }}"
+
+- name: Check if availability size is less then defined threshold {{ docker_partition_min_size_gb }}
+  set_fact: need_extends="{{ disk_av_gb|float < docker_partition_min_size_gb |float }}"
+
+- name: Extend docker data partition
   block: 
     - name: Install LVM
       yum: 

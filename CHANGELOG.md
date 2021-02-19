@@ -2,6 +2,8 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 1.0.0
+- Fix ansible-lint warnings
 ## 0.4.5
 - Edit .travis.yml
 ## 0.4.4

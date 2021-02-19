@@ -6,7 +6,7 @@
   vars_files: 
     - "./variables.yaml"
   roles:
-    - vm-configuration
+    - vm_configuration
     - geerlingguy.docker  ## Docker Installation
-    - docker-securitization
-    - docker-swarm
+    - docker_securitization
+    - docker_swarm
