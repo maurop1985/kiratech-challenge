@@ -1,6 +1,9 @@
 
 # Change Log
 All notable changes to this project will be documented in this file.
+
+## 0.4.1
+- Fix travis filename
 ## 0.4.0
 - Add travis.yaml for Travis CI integration
 ## 0.3.1
