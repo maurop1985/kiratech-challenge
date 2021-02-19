@@ -2,6 +2,8 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 1.0.1
+- Fix .ansible-lint in order to exclude imported roles
 ## 1.0.0
 - Fix ansible-lint warnings
 ## 0.4.5
