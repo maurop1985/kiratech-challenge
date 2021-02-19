@@ -1,5 +1,7 @@
 language: python
 install:
+  - ansible-galaxy install -R requirements.txt
+  - pip install ansible
   - pip install ansible-lint
 script:
   - ansible-lint provisioning/playbook.yaml
