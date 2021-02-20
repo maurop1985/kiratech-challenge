@@ -37,5 +37,6 @@
 - name: "Fecth files to local hosts"
   fetch: 
     src: "{{ item.path }}"
-    dest: ../client/
+    dest: "../client/{{ inventory_hostname }}/"
+    flat: yes
   with_items: "{{ files_to_copy.files }}"

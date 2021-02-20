@@ -2,6 +2,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 1.1.0
+- Add docker_test role. This role run a test deploy to swarm cluster from the machine where ansible are running.
+- Add README.md
 ## 1.0.1
 - Fix .ansible-lint in order to exclude imported roles
 ## 1.0.0

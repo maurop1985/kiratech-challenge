@@ -1,0 +1,7 @@
+---
+# defaults file for docker-securitization
+dds_country: IT
+dds_state: Rome
+dds_locality: Rome
+dds_server_cert_path: /etc/docker         # Path where server certificates will be created
+dds_client_cert_path: /etc/docker/client  # Path where client certificates will be created

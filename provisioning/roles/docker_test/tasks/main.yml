@@ -1,0 +1,14 @@
+---
+- name: create test service
+  become: no
+  delegate_to: 127.0.0.1
+  community.docker.docker_compose:
+    project_src: "{{ role_path }}/files"
+    docker_host: "tcp://{{ inventory_hostname }}:2376"
+    ca_cert: "../client/{{ inventory_hostname }}/ca.pem"
+    client_cert: "../client/{{ inventory_hostname }}/cert.pem" 
+    client_key: "../client/{{ inventory_hostname }}/key.pem"
+    validate_certs: yes
+    tls_hostname: "{{ inventory_hostname }}"
+  register: result
+  when: "'docker_swarm_manager' in group_names"

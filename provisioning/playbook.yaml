@@ -8,5 +8,6 @@
   roles:
     - vm_configuration
     - geerlingguy.docker  ## Docker Installation
-    - docker_securitization
+    - docker_secure
     - docker_swarm
+    - docker_test

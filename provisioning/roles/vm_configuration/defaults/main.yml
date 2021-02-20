@@ -2,4 +2,7 @@
 # defaults file for requirements
 volume_group_name: docker_vg
 logical_volume_name: docker_lv
+docker_partition_min_size_gb: 40
+docker_data_disk: /dev/sdb
+docker_data_path: /var/lib/docker
 
