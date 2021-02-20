@@ -6,12 +6,12 @@ An Ansible Playbook to provision 2 VM Centos with the following features:
 - Docker setup on 2 VM
 - Docker configuration:  
   1. Expose Docker Daemon REST API in secure mode
-  2. Docker daemon starts on vm boot
+  2. Docker daemon starts at boot
 - Docker Swarm configuration:
   1. Securely access
   2. Up&Running to deploy services from local host
 
-All push action on master branch trigger a Travis CI pipeline to check playbook syntax errors.
+All push actions, on master branch, trigger a Travis CI pipeline to check playbook syntax errors.
 
 **Optional features are not covered from this playbook**
 
@@ -43,12 +43,13 @@ docker1
 [docker_swarm_worker]
 docker2
 ```
-It's required that one of two VM is part of [docker_swarm_manager] group, while the other VM is in the [docker_swarm_worker] group
+**docker_swarm_manager** group must contain one and only one VM.   
+**docker_swarm_worker** group must contain the other VM.
 
-IP addresses specified in the inventory under _ansible_ssh_host_  will be used to configure docker swarm cluster,
+IP addresses specified in the inventory under _ansible_ssh_host_ will be used to configure docker swarm cluster.
 
 ## Variables
-
+Variables are in [provisioning/variables.yaml](provisioning/variables.yaml)
 ```sh
 # VM-CONFIGURAION VARIABLES
 docker_partition_min_size_gb:           #default=40
@@ -74,25 +75,26 @@ dds_client_cert_path:           #default=/etc/docker/client
 ```
 
 ## Run
+Run playbook with the below command:  
 `ansible-playbook -i provisioning/inventory provisioning/playbook.yaml`
 
-## Consideration about roles
-Playbook runs 4 roles to achieve the goal:
-1. vm_configuration
+## Considerations about roles
+Playbook runs 5 roles to achieve the goal:
+1. vm_configuration (configure virtual machines before docker installation)
 2. ansible-role-docker (owner of docker installation tasks)
 3. docker_secure
-4. docker_swarm
+4. docker_swarm (initialize 2 nodes docker swarm with 1 manager and 1 worker)
 5. docker_test (test service deploy from local host)
 
 
-It includes 2 community roles.  
-[ansible-role-docker](https://github.com/geerlingguy/ansible-role-docker) - it is used to install docker ans has chosen for these reasons:
-- creator reliability
-- ready to use without further configuration or tricks
-- very well documented
+Playbook includes 2 community roles.  
+[ansible-role-docker](https://github.com/geerlingguy/ansible-role-docker) - it is used to install docker and it has been chosen for these reasons:
+- reliable creator
+- role ready to use without further configuration or tricks
+- role documented very well
+- it configures docker daemon to start at boot
 
 [role-secure-docker-deamon](https://github.com/alexinthesky/role-secure-docker-daemon) - it is used in the custom role docker_secure and it tasked of create:
 - CA Key and Certificate
 - Server Key and Certificate
 - Client Key and Certificate
-
